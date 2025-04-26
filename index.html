@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ứng dụng Quản Lý Công Việc</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #121212;
+      color: #f5f5f5;
+    }
+    .card {
+      background-color: #1E1E2F;
+    }
+    .btn {
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background-color: #1F8EF1;
+      color: #fff;
+    }
+    .btn-danger {
+      background-color: #F39C12;
+      color: #fff;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+    .hidden {
+      display: none;
+    }
+    input, select {
+      background-color: #1E1E2F;
+      color: #f5f5f5;
+      border: 1px solid #444;
+      padding: 0.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table th, table td {
+      border: 1px solid #444;
+      padding: 0.5rem;
+    }
+    .priority-high {
+      color: #ff4d4d;
+    }
+    .priority-medium {
+      color: #ffa31a;
+    }
+    .priority-low {
+      color: #33cc33;
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Section -->
+  <section id="loginSection" class="card max-w-md mx-auto mt-20 p-6 shadow-lg">
+    <h2 class="text-xl font-bold mb-4">Đăng Nhập</h2>
+    <form id="loginForm" class="space-y-4">
+      <input type="text" id="username" placeholder="Tên tài khoản" required class="w-full">
+      <input type="password" id="password" placeholder="Mật khẩu" required class="w-full">
+      <button type="submit" class="btn btn-primary w-full">Đăng Nhập</button>
+    </form>
+  </section>
+
+  <!-- Dashboard Section -->
+  <section id="dashboardSection" class="hidden card max-w-6xl mx-auto mt-8 p-6 shadow-lg">
+    <header class="flex justify-between items-center">
+      <h2 class="text-xl font-bold">Quản Lý Công Việc</h2>
+      <button id="logoutButton" class="btn btn-danger">Đăng Xuất</button>
+    </header>
+
+    <!-- Thống kê -->
+    <section class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="card p-4">
+        <h3 class="font-semibold">Tổng Số Công Việc</h3>
+        <p id="taskCount" class="text-2xl font-bold mt-2">0</p>
+      </div>
+      <div class="card p-4">
+        <h3 class="font-semibold">Công Việc Đã Hoàn Thành</h3>
+        <p id="completedTaskCount" class="text-2xl font-bold mt-2">0</p>
+      </div>
+      <div class="card p-4">
+        <h3 class="font-semibold">Công Việc Quá Hạn</h3>
+        <p id="overdueTaskCount" class="text-2xl font-bold mt-2">0</p>
+      </div>
+    </section>
+
+    <!-- Form thêm công việc -->
+    <section class="mt-6">
+      <h3 class="font-semibold mb-4">Thêm Công Việc</h3>
+      <form id="taskForm" class="space-y-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <input type="text" id="taskName" placeholder="Tên công việc" required>
+          <input type="text" id="taskAssignee" placeholder="Người được phân công" required>
+          <input type="date" id="taskDeadline" required>
+          <select id="taskPriority" required>
+            <option value="" disabled selected>Mức độ ưu tiên</option>
+            <option value="high">Cao</option>
+            <option value="medium">Trung bình</option>
+            <option value="low">Thấp</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Thêm Công Việc</button>
+      </form>
+    </section>
+
+    <!-- Tìm kiếm -->
+    <section class="mt-6">
+      <input type="text" id="searchInput" placeholder="Tìm kiếm công việc..." class="w-full">
+    </section>
+
+    <!-- Danh sách công việc -->
+    <section class="mt-6">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tên Công Việc</th>
+            <th>Người Được Phân Công</th>
+            <th>Hạn Chót</th>
+            <th>Ưu Tiên</th>
+            <th>Hoàn Thành</th>
+            <th>Hành Động</th>
+          </tr>
+        </thead>
+        <tbody id="taskTableBody">
+          <!-- Rows sẽ được thêm động -->
+        </tbody>
+      </table>
+    </section>
+  </section>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
