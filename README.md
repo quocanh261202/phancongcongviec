@@ -43,7 +43,9 @@ Mở file `package.json` và kiểm tra mục `"main"` phải là `main.js`, và
 
 
 
-Cách chạy ứng dụng 
+Cách chạy ứng dụng
+
+DOWNLOAD FILE ZIP
 
 1. git clone ...
 
